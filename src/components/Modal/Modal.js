@@ -2,9 +2,8 @@ import React from 'react'
 import './Modal.scss'
 
 const Modal = ({ children, isOpen, toggle }) => {
-	let modalClass = isOpen ? 'open' : 'close'
 	return (
-		<div className={`modal ${modalClass}`}>
+		<div className={`modal ${!isOpen ? 'close' : ''}`}>
 			<button onClick={() => toggle()}>x</button>
 			{children}
 		</div>
