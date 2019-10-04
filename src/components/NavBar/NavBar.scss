@@ -1,0 +1,15 @@
+nav.mainNav {
+	ul {
+		padding: 0px;
+		margin: 0px;
+		list-style: none;
+		li {
+			line-height: 120px;
+			border-top: 1px solid #ccc;
+			a {
+				display: block;
+				text-align: center;
+			}
+		}
+	}
+}
