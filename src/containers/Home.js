@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from '../components/Header/Header'
 import NavBar from '../components/NavBar/NavBar'
 import Modal from '../components/Modal/Modal'
+import Movies from '../components/Movies/Movies'
 
 class Home extends Component {
 	state = {
@@ -31,7 +32,8 @@ class Home extends Component {
 	getMovies = (cat) => {
 		fetch(`https://api.themoviedb.org/3/movie/${cat}?api_key=${this.state.apiKey}`)
 			.then((res) => res.json())
-			.then((res) => this.setState({ movies: res.results }))
+			.then((res) => {
+				this.setState({ movies: res.results })})
 	}
 
 	componentDidMount() {
@@ -39,7 +41,6 @@ class Home extends Component {
 	}
 
 	render() {
-		console.log(this.state.movies)
 		return (
 			<React.Fragment>
 				<Header>
@@ -47,9 +48,8 @@ class Home extends Component {
 				</Header>
 				<div className={'container'}>
 					<a onClick={() => this.setMovie('Shawshank redemption')}>btn</a>
-					{this.state.movies.map((e, i) => <p key={i}>{e.title}</p>)}
+					<Movies movies={this.state.movies}/>
 				</div>
-
 				<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
 					<p>'oli'</p>
 				</Modal>
