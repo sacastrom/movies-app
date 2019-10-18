@@ -32,7 +32,9 @@ class Home extends Component {
 	getMovies = (cat) => {
 		fetch(`https://api.themoviedb.org/3/movie/${cat}?api_key=${this.state.apiKey}`)
 			.then((res) => res.json())
-			.then((res) => this.setState({ movies: res.results }))
+			.then((res) => {
+				this.setState({ movies: res.results })
+			})
 	}
 
 	componentDidMount() {
@@ -49,7 +51,6 @@ class Home extends Component {
 					<a onClick={() => this.setMovie('Shawshank redemption')}>btn</a>
 					<Movies movies={this.state.movies} title={'Top Rated'} amount={5} />
 				</div>
-
 				<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
 					<p>'oli'</p>
 				</Modal>
