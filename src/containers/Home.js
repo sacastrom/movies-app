@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from '../components/Header/Header'
 import NavBar from '../components/NavBar/NavBar'
 import Modal from '../components/Modal/Modal'
+import Movies from '../components/Movies/Movies'
 
 class Home extends Component {
 	state = {
@@ -39,7 +40,6 @@ class Home extends Component {
 	}
 
 	render() {
-		console.log(this.state.movies)
 		return (
 			<React.Fragment>
 				<Header>
@@ -47,7 +47,7 @@ class Home extends Component {
 				</Header>
 				<div className={'container'}>
 					<a onClick={() => this.setMovie('Shawshank redemption')}>btn</a>
-					{this.state.movies.map((e, i) => <p key={i}>{e.title}</p>)}
+					<Movies movies={this.state.movies} title={'Top Rated'} amount={5} />
 				</div>
 
 				<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
