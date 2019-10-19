@@ -1,16 +1,12 @@
 import React from 'react'
 
 const Movie = (props) => {
-	let { title, release_date, overview, video } = props
+	let { title, id, onClick } = props
 	return (
 		<li>
-			<p>
+			<a onClick={() => onClick(id)}>
 				<strong>{title}</strong>
-			</p>
-			{/*
-			<em>{release_date}</em>
-			<p>{overview}</p>
-			*/}
+			</a>
 		</li>
 	)
 }
@@ -26,21 +22,22 @@ class Movies extends React.Component {
 
 	showMore = (e) => {
 		e.preventDefault()
-		let increment = this.state.currentPage + 1
-		this.setState({
-			currentPage: increment,
-			totalMovies: this.props.amount * increment
-		})
+		if (this.props.movies.length > this.state.totalMovies) {
+			let increment = this.state.currentPage + 1
+			this.setState({
+				currentPage: increment,
+				totalMovies: this.props.amount * increment
+			})
+		}
 	}
 
 	render() {
-		let { title, movies, amount } = this.props
+		let { title, movies, amount, expandMovie } = this.props
 		let aux = amount ? movies.slice(0, this.state.totalMovies) : movies
-		console.log(movies.length, this.state.totalMovies, this.state.currentPage)
 		return (
 			<div>
 				<h3>{title}</h3>
-				<ul>{aux.map((movie, i) => <Movie key={i} {...movie} />)}</ul>
+				<ul>{aux.map((movie, i) => <Movie key={i} {...movie} onClick={expandMovie} />)}</ul>
 				<button onClick={(e) => this.showMore(e)}>show more</button>
 			</div>
 		)
